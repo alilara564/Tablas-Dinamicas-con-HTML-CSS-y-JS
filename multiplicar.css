@@ -1,0 +1,43 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #333;
+    color: #fff;
+}
+h1{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.botonMultiplicar{
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #173655;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+.botonMultiplicar:hover{
+    background-color: #0c1f32;
+}
+
+.tabla{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px auto;
+    border-radius: 20px;
+    border-color: #f0f0f0;
+    border-collapse: collapse;
+    width: 25%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.198);
+}
+.fila{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
