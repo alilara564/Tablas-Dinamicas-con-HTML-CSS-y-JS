@@ -1,43 +1,212 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #333;
-    color: #fff;
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-h1{
+
+/* VARIABLES */
+:root {
+    --bg: #f2f2f7;
+    --glass: rgba(255, 255, 255, 0.25);
+    --glass-strong: rgba(255, 255, 255, 0.4);
+    --text: #1c1c1e;
+    --accent: rgba(10, 132, 255, 0.6);
+    --border: rgba(255, 255, 255, 0.3);
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* MODO OSCURO */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #000;
+        --glass: rgba(255, 255, 255, 0.08);
+        --glass-strong: rgba(255, 255, 255, 0.12);
+        --text: #ffffff;
+        --accent: rgba(10, 132, 255, 0.7);
+        --border: rgba(255, 255, 255, 0.1);
+        --shadow: rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* BODY */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    padding: 20px;
     text-align: center;
-    margin-top: 50px;
+
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    /* 🔥 Fallback para evitar pantalla blanca */
+    background-color: var(--bg);
+
+    animation: fadeIn 0.6s ease;
 }
 
-.botonMultiplicar{
-    display: flex;
-    justify-content: center;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #173655;
-    color: #ffffff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
+/* 🔥 FONDO CLARO (corregido) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image: url("img_pagina_white.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -2;
+    opacity: 1;
+    transition: opacity 0.8s ease-in-out;
+    filter: saturate(1.1) contrast(1.05);
+}
+
+/* 🔥 FONDO OSCURO (corregido) */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image: url("img_pagina_black.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    filter: saturate(1.1) contrast(1.05);
+}
+
+/* CAMBIO SUAVE */
+@media (prefers-color-scheme: dark) {
+    body::before {
+        opacity: 0;
+    }
+
+    body::after {
+        opacity: 1;
+    }
+}
+
+/* ANIMACIÓN GENERAL */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* TÍTULO */
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* BOTÓN */
+.botonMultiplicar {
+    padding: 14px 26px;
     font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-.botonMultiplicar:hover{
-    background-color: #0c1f32;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    color: var(--text);
+    cursor: pointer;
+    margin-bottom: 30px;
+
+    box-shadow: 
+        0 8px 25px var(--shadow),
+        inset 0 1px 1px rgba(255,255,255,0.4);
+
+    transition: all 0.3s ease;
 }
 
-.tabla{
+.botonMultiplicar:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: var(--glass-strong);
+}
+
+.botonMultiplicar:active {
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* CONTENEDOR */
+.tabla {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin: 20px auto;
-    border-radius: 20px;
-    border-color: #f0f0f0;
-    border-collapse: collapse;
-    width: 25%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.198);
+    align-items: center;
+    gap: 14px;
 }
-.fila{
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
+
+/* FILAS */
+.fila {
+    width: 100%;
+    max-width: 320px;
+    padding: 16px;
+    border-radius: 20px;
+
+    background: var(--glass);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border: 1px solid var(--border);
+
+    box-shadow: 
+        0 10px 30px var(--shadow),
+        inset 0 1px 1px rgba(255,255,255,0.3);
+
+    font-size: 18px;
+    font-weight: 500;
+
+    transition: all 0.35s ease;
+
+    animation: floatUp 0.5s ease both;
+}
+
+/* DELAY */
+.fila:nth-child(1){ animation-delay: 0.05s;}
+.fila:nth-child(2){ animation-delay: 0.1s;}
+.fila:nth-child(3){ animation-delay: 0.15s;}
+.fila:nth-child(4){ animation-delay: 0.2s;}
+.fila:nth-child(5){ animation-delay: 0.25s;}
+
+/* HOVER */
+.fila:hover {
+    transform: translateY(-6px) scale(1.03);
+    background: var(--glass-strong);
+}
+
+/* ANIMACIÓN */
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 22px;
+    }
+
+    .botonMultiplicar {
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .fila {
+        font-size: 16px;
+        max-width: 100%;
+    }
 }
