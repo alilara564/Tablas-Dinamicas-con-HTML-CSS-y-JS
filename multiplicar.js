@@ -1,6 +1,28 @@
+function generarDesdeInput() {
+    const input = document.querySelector(".inputNumero");
+    const mensaje = document.getElementById("mensajeError");
+    const valor = input.value.trim();
 
-function generarTabla(numero){
+    // Validación
+    if (valor === "" || isNaN(valor) || valor <= 0) {
+        mensaje.classList.add("activo");
+        input.classList.add("error");
+        return;
+    }
+
+    // Quitar error si todo está bien
+    mensaje.classList.remove("activo");
+    input.classList.remove("error");
+
+    generarTabla(parseInt(valor));
+}
+
+
+
+
+function generarTabla(){
     let tabla = document.getElementById("cmpTabla");
+    let numero = parseInt(document.getElementById("cmpNumero").value);
     tabla.innerHTML = "";
     for(let i = 1; i <= 12; i++){
         let fila = document.createElement("div");

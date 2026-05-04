@@ -103,6 +103,11 @@ h1 {
     font-weight: 600;
     margin-bottom: 25px;
 }
+h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
 
 /* BOTÓN */
 .botonMultiplicar {
@@ -209,4 +214,106 @@ h1 {
         font-size: 16px;
         max-width: 100%;
     }
+}
+
+/* CONTENEDOR DEL INPUT */
+.input-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin: auto;
+}
+
+/* INPUT ESTILO BURBUJA */
+.inputNumero {
+    width: 220px;
+    padding: 14px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    color: var(--text);
+    font-size: 16px;
+    text-align: center;
+
+    outline: none;
+
+    box-shadow: 
+        0 8px 25px var(--shadow),
+        inset 0 1px 1px rgba(255,255,255,0.4);
+
+    transition: all 0.3s ease;
+}
+
+/* PLACEHOLDER */
+.inputNumero::placeholder {
+    color: var(--text);
+    opacity: 0.6;
+}
+
+/* HOVER */
+.inputNumero:hover {
+    transform: scale(1.03);
+    background: var(--glass-strong);
+}
+
+/* FOCUS (cuando escribes) */
+.inputNumero:focus {
+    transform: scale(1.05);
+    border-color: var(--accent);
+    box-shadow: 
+        0 10px 30px var(--shadow),
+        0 0 0 2px rgba(10,132,255,0.3);
+}
+
+/* Quitar flechas en algunos navegadores */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    appearance: textfield;
+}
+
+/* MENSAJE DE ERROR */
+.mensajeError {
+    margin-top: 10px;
+    padding: 10px 16px;
+    border-radius: 12px;
+
+    background: rgba(255, 59, 48, 0.15);
+    color: #ff3b30;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 59, 48, 0.3);
+
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+
+    pointer-events: none;
+}
+
+/* CUANDO SE MUESTRA */
+.mensajeError.activo {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* INPUT ERROR */
+.inputNumero.error {
+    border-color: #ff3b30;
+    box-shadow: 
+        0 0 0 2px rgba(255, 59, 48, 0.3),
+        0 8px 25px var(--shadow);
 }
