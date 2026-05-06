@@ -1,6 +1,6 @@
 function generarDesdeInput() {
     const input = document.querySelector(".inputNumero");
-    const mensaje = document.getElementById("mensajeError");
+    const mensaje = document.getElementById("msmError");
     const valor = input.value.trim();
 
     // Validación
@@ -22,7 +22,7 @@ function generarDesdeInput() {
 
 function generarTabla(){
     let tabla = document.getElementById("cmpTabla");
-    let numero = parseInt(document.getElementById("cmpNumero").value);
+    let numero = parseInt(document.getElementById("inputNumero").value);
     tabla.innerHTML = "";
     for(let i = 1; i <= 12; i++){
         let fila = document.createElement("div");
