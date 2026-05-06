@@ -18,8 +18,6 @@ function generarDesdeInput() {
 }
 
 
-
-
 function generarTabla(){
     let tabla = document.getElementById("cmpTabla");
     let numero = parseInt(document.getElementById("inputNumero").value);
